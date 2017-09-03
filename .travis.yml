@@ -11,5 +11,9 @@ matrix:
     - elixir:      1.5.1
       otp_release: 20.0
 
-after_success:
-  - mix coveralls.travis
+after_success: |-
+  OTP_RELEASE=$(erl -eval 'io:fwrite(erlang:system_info(otp_release)), halt().' -noshell)
+
+  if [ "20" -eq "${OTP_RELEASE}" ]; then
+    mix coveralls.travis
+  fi
