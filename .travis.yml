@@ -5,16 +5,12 @@ matrix:
   include:
     - elixir:      1.4.5
       otp_release: 18.3
-    - elixir:      1.5.1
-      otp_release: 18.3
-    - elixir:      1.5.1
+    - elixir:      1.5.3
       otp_release: 19.3
-    - elixir:      1.5.1
-      otp_release: 20.0
+    - elixir:      1.6.0
+      otp_release: 20.2
 
 after_success: |-
-  OTP_RELEASE=$(erl -eval 'io:fwrite(erlang:system_info(otp_release)), halt().' -noshell)
-
-  if [ "20" -eq "${OTP_RELEASE}" ]; then
+  if [ "1.6.0" -eq "${TRAVIS_ELIXIR_VERSION}" ]; then
     mix coveralls.travis
   fi
