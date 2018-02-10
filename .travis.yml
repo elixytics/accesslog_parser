@@ -9,8 +9,4 @@ matrix:
       otp_release: 19.3
     - elixir: 1.6.0
       otp_release: 20.2
-
-after_success: |-
-  if [ "1.6.0" -eq "${TRAVIS_ELIXIR_VERSION}" ]; then
-    mix coveralls.travis
-  fi
+      after_success: mix coveralls.travis
