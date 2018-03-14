@@ -1,6 +1,23 @@
 defmodule AccessLogParser do
   @moduledoc """
-  Parses access log lines.
+  Parses access log lines matching one of the following formats:
+
+  ```
+  # Common Log Format (CLF)
+  # Apache configuration: "%h %l %u %t \\"%r\\" %>s %b"
+  :common
+
+  # CLF with Virtual Host and Client
+  # Apache configuration: "%v %h %l %u %t \\"%r\\" %>s %b \\"%{Referer}i\\" \\"%{User-agent}i\\""
+  :common_complete
+
+  # CLF with Virtual Host
+  # Apache configuration: "%v %h %l %u %t \\"%r\\" %>s %b"
+  :common_vhost
+
+  # NCSA extended/combined log format
+  # Apache configuration: "%h %l %u %t \\"%r\\" %>s %b \\"%{Referer}i\\" \\"%{User-agent}i\\""
+  :extended
   """
 
   @tpl_client ~S/\s+"(?P<referrer>.*?)"\s+"(?P<user_agent>.*?)"/
