@@ -31,7 +31,7 @@ defmodule AccessLogParser.Mixfile do
   defp docs do
     [
       extras: ["CHANGELOG.md", "README.md"],
-      main: "readme",
+      main: "AccessLogParser",
       source_ref: "master",
       source_url: @url_github
     ]
