@@ -49,10 +49,12 @@ defmodule AccessLogParser do
   @re_common_vhost Regex.compile!(@tpl_vhost <> @tpl_common)
   @re_extended Regex.compile!(@tpl_common <> @tpl_client)
 
+  @type log_format :: :common | :common_complete | :common_vhost | :extended
+
   @doc """
   Converts a given line into a map matching the defined format.
   """
-  @spec parse(String.t(), atom) :: map
+  @spec parse(String.t(), log_format) :: map
   def parse(line, :common), do: Regex.named_captures(@re_common, line)
   def parse(line, :common_complete), do: Regex.named_captures(@re_common_complete, line)
   def parse(line, :common_vhost), do: Regex.named_captures(@re_common_vhost, line)
