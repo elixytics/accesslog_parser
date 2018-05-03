@@ -1,23 +1,43 @@
 defmodule AccessLogParser do
   @moduledoc """
-  Parses access log lines matching one of the following formats:
+  Parses access log lines matching a given (known) format.
 
-  ```
-  # Common Log Format (CLF)
-  # Apache configuration: "%h %l %u %t \\"%r\\" %>s %b"
-  :common
+  ## Usage
 
-  # CLF with Virtual Host and Client
-  # Apache configuration: "%v %h %l %u %t \\"%r\\" %>s %b \\"%{Referer}i\\" \\"%{User-agent}i\\""
-  :common_complete
+  You simply call the parse method with your log line and the format it adheres to:
 
-  # CLF with Virtual Host
-  # Apache configuration: "%v %h %l %u %t \\"%r\\" %>s %b"
-  :common_vhost
+      iex> AccessLogParser.parse("1.2.3.4 - - [22/Apr/2017:15:17:39 +0200] "GET / HTTP/1.0" 200 765", :common)
+      %{
+        "date" => "22/Apr/2017:15:17:39",
+        "ip" => "1.2.3.4",
+        "length" => "765",
+        "path" => "/",
+        "status" => "200",
+        "timezone" => "+0200",
+        "userid" => "-"
+      }
 
-  # NCSA extended/combined log format
-  # Apache configuration: "%h %l %u %t \\"%r\\" %>s %b \\"%{Referer}i\\" \\"%{User-agent}i\\""
-  :extended
+  ## Formats
+
+  ### Common Log Format (CLF)
+
+  - `:common`
+  - Apache configuration: `%h %l %u %t \\"%r\\" %>s %b`
+
+  ### CLF with Virtual Host and Client
+
+  - `:common_complete`
+  - Apache configuration: `%v %h %l %u %t \\"%r\\" %>s %b \\"%{Referer}i\\" \\"%{User-agent}i\\"`
+
+  ### CLF with Virtual Host
+
+  - `:common_vhost`
+  - Apache configuration: `%v %h %l %u %t \\"%r\\" %>s %b`
+
+  ### NCSA extended/combined log format
+
+  - `:extended`
+  - Apache configuration: `%h %l %u %t \\"%r\\" %>s %b \\"%{Referer}i\\" \\"%{User-agent}i\\"`
   """
 
   @tpl_client ~S/\s+"(?P<referrer>.*?)"\s+"(?P<user_agent>.*?)"/
