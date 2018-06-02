@@ -7,18 +7,18 @@ Add the library as a dependency to your `mix.exs` file:
 ```elixir
 defp deps do
   [
-    {:accesslog_parser, "~> 0.1"}
+    # ...
+    {:accesslog_parser, "~> 0.1"},
+    # ...
   ]
 end
 ```
-
 
 ## Usage
 
 Grab a line from your accesslog and parse it using `AccessLogParser.parse/2`.
 
-See the module itself for details on supported formats and arguments.
-
+See the module itself for details on supported formats and how to parse them.
 
 ## License
 
