@@ -1,3 +1,4 @@
+# credo:disable-for-this-file Credo.Check.Readability.MaxLineLength
 defmodule AccessLogParserTest do
   use ExUnit.Case, async: true
 

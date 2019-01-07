@@ -1,3 +1,4 @@
+# credo:disable-for-this-file Credo.Check.Readability.MaxLineLength
 defmodule AccessLogParser do
   @moduledoc """
   Parses access log lines matching a given (known) format.
