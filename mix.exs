@@ -23,6 +23,7 @@ defmodule AccessLogParser.Mixfile do
 
   defp deps do
     [
+      {:credo, "~> 1.0", only: :dev, runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:excoveralls, "~> 0.8", only: :test, runtime: false}
     ]
