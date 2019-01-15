@@ -10,6 +10,7 @@ defmodule AccessLogParser.Mixfile do
       elixir: "~> 1.4",
       deps: deps(),
       description: "Access Log Parser",
+      dialyzer: dialyzer(),
       docs: docs(),
       package: package(),
       preferred_cli_env: [
@@ -27,6 +28,17 @@ defmodule AccessLogParser.Mixfile do
       {:dialyxir, "~> 1.0.0-rc", only: :dev, runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:excoveralls, "~> 0.8", only: :test, runtime: false}
+    ]
+  end
+
+  defp dialyzer do
+    [
+      flags: [
+        :error_handling,
+        :race_conditions,
+        :underspecs,
+        :unmatched_returns
+      ]
     ]
   end
 
