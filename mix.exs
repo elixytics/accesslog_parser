@@ -7,7 +7,7 @@ defmodule AccessLogParser.Mixfile do
     [
       app: :accesslog_parser,
       version: "0.2.0-dev",
-      elixir: "~> 1.4",
+      elixir: "~> 1.7",
       deps: deps(),
       description: "Access Log Parser",
       dialyzer: dialyzer(),
