@@ -24,6 +24,7 @@ defmodule AccessLogParser.Mixfile do
 
   defp deps do
     [
+      {:benchee, "~> 1.0", only: :bench, runtime: false},
       {:credo, "~> 1.0", only: :dev, runtime: false},
       {:dialyxir, "~> 1.0.0-rc", only: :dev, runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
