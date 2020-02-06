@@ -1,4 +1,4 @@
-defmodule AccessLogParser.Mixfile do
+defmodule AccessLogParser.MixProject do
   use Mix.Project
 
   @url_github "https://github.com/elixytics/accesslog_parser"
