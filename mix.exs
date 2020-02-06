@@ -8,17 +8,25 @@ defmodule AccessLogParser.MixProject do
       app: :accesslog_parser,
       version: "0.2.0-dev",
       elixir: "~> 1.7",
+      aliases: aliases(),
       deps: deps(),
       description: "Access Log Parser",
       dialyzer: dialyzer(),
       docs: docs(),
       package: package(),
       preferred_cli_env: [
+        "bench.parse": :bench,
         coveralls: :test,
         "coveralls.detail": :test,
         "coveralls.travis": :test
       ],
       test_coverage: [tool: ExCoveralls]
+    ]
+  end
+
+  defp aliases() do
+    [
+      "bench.parse": "run bench/parse.exs"
     ]
   end
 
