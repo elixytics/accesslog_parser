@@ -6,6 +6,16 @@ defmodule AccessLogParser.Parsec do
   date = repeat(ascii_string([?a..?z, ?A..?Z, ?0..?9, ?:, ?/], 20))
   ip = repeat(ascii_string([?a..?f, ?A..?F, ?0..?9, ?:, ?.], min: 7))
   length = repeat(integer(min: 1))
+
+  method =
+    choice([
+      string("DELETE"),
+      string("GET"),
+      string("PATCH"),
+      string("POST"),
+      string("PUT")
+    ])
+
   path = repeat(ascii_string([not: 32], min: 1))
   status = repeat(integer(min: 1))
   timezone = repeat(ascii_string([?0..?9, ?+, ?-], 5))
@@ -24,7 +34,8 @@ defmodule AccessLogParser.Parsec do
     |> concat(timezone)
     |> ignore(ascii_char([?]]))
     |> ignore(ascii_char([32]))
-    |> ignore(repeat(ascii_string([not: 32], min: 1)))
+    |> ignore(ascii_char([?"]))
+    |> ignore(method)
     |> ignore(ascii_char([32]))
     |> concat(path)
     |> ignore(repeat(ascii_string([not: ?"], min: 1)))
