@@ -70,7 +70,8 @@ defmodule AccessLogParser do
           "userid" => userid
         }
 
-      _ -> nil
+      _ ->
+        nil
     end
   end
 
