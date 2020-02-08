@@ -12,6 +12,7 @@ defmodule AccessLogParser do
         "date" => "22/Apr/2017:15:17:39",
         "ip" => "1.2.3.4",
         "length" => "765",
+        "method" => "GET",
         "path" => "/",
         "status" => "200",
         "timezone" => "+0200",
@@ -59,11 +60,12 @@ defmodule AccessLogParser do
   @spec parse(String.t(), log_format) :: map
   def parse(line, :common) do
     case Parsec.common(line) do
-      {:ok, [ip, userid, date, timezone, path, status, length], _, _, _, _} ->
+      {:ok, [ip, userid, date, timezone, method, path, status, length], _, _, _, _} ->
         %{
           "date" => date,
           "ip" => ip,
           "length" => length,
+          "method" => method,
           "path" => path,
           "status" => status,
           "timezone" => timezone,

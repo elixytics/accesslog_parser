@@ -35,7 +35,7 @@ defmodule AccessLogParser.Parsec do
     |> ignore(ascii_char([?]]))
     |> ignore(ascii_char([32]))
     |> ignore(ascii_char([?"]))
-    |> ignore(method)
+    |> concat(method)
     |> ignore(ascii_char([32]))
     |> concat(path)
     |> ignore(repeat(ascii_string([not: ?"], min: 1)))
