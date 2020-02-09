@@ -24,31 +24,27 @@ defmodule AccessLogParser.Parsec do
 
   common =
     ip
-    |> ignore(ascii_char([32]))
+    |> ignore(string(" "))
     |> ignore(repeat(ascii_string([not: 32], min: 1)))
-    |> ignore(ascii_char([32]))
+    |> ignore(string(" "))
     |> concat(userid)
-    |> ignore(ascii_char([32]))
-    |> ignore(ascii_char([?[]))
+    |> ignore(string(" ["))
     |> concat(date)
-    |> ignore(ascii_char([32]))
+    |> ignore(string(" "))
     |> concat(timezone)
-    |> ignore(ascii_char([?]]))
-    |> ignore(ascii_char([32]))
-    |> ignore(ascii_char([?"]))
+    |> ignore(string(~s(] ")))
     |> concat(method)
-    |> ignore(ascii_char([32]))
+    |> ignore(string(" "))
     |> concat(path)
     |> ignore(repeat(ascii_string([not: ?"], min: 1)))
-    |> ignore(ascii_char([?"]))
-    |> ignore(ascii_char([32]))
+    |> ignore(string(~s(" )))
     |> concat(status)
-    |> ignore(ascii_char([32]))
+    |> ignore(string(" "))
     |> concat(length)
 
   common_vhost =
     vhost
-    |> ignore(ascii_char([32]))
+    |> ignore(string(" "))
     |> concat(common)
 
   defparsec :common, common, inline: true
