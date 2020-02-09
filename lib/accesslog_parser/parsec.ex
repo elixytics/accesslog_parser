@@ -9,11 +9,15 @@ defmodule AccessLogParser.Parsec do
 
   method =
     choice([
+      string("CONNECT"),
       string("DELETE"),
       string("GET"),
+      string("HEAD"),
+      string("OPTIONS"),
       string("PATCH"),
       string("POST"),
-      string("PUT")
+      string("PUT"),
+      string("TRACE")
     ])
 
   path = repeat(ascii_string([not: 32], min: 1))
