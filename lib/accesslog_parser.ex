@@ -49,7 +49,6 @@ defmodule AccessLogParser do
   @tpl_vhost ~S/(?P<host>[\w\-\.]*)(?::\d+)?\s+/
 
   @re_common_complete Regex.compile!(@tpl_vhost <> @tpl_common <> @tpl_client)
-  @re_common_vhost Regex.compile!(@tpl_vhost <> @tpl_common)
   @re_extended Regex.compile!(@tpl_common <> @tpl_client)
 
   @type log_format :: :common | :common_complete | :common_vhost | :extended
@@ -77,7 +76,26 @@ defmodule AccessLogParser do
     end
   end
 
+  def parse(line, :common_vhost) do
+    case Parsec.common_vhost(line) do
+      {:ok, [vhost, ip, userid, date, timezone, method, path, status, length], _, _, _, _} ->
+        %{
+          "date" => date,
+          "ip" => ip,
+          "length" => length,
+          "method" => method,
+          "path" => path,
+          "status" => status,
+          "timezone" => timezone,
+          "userid" => userid,
+          "vhost" => vhost
+        }
+
+      _ ->
+        nil
+    end
+  end
+
   def parse(line, :common_complete), do: Regex.named_captures(@re_common_complete, line)
-  def parse(line, :common_vhost), do: Regex.named_captures(@re_common_vhost, line)
   def parse(line, :extended), do: Regex.named_captures(@re_extended, line)
 end

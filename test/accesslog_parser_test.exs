@@ -46,13 +46,14 @@ defmodule AccessLogParserTest do
            ) ==
              %{
                "date" => "22/Apr/2017:15:17:39",
-               "host" => "www.example.com",
                "ip" => "1.2.3.4",
-               "length" => "765",
+               "length" => 765,
+               "method" => "GET",
                "path" => "/",
-               "status" => "200",
+               "status" => 200,
                "timezone" => "+0200",
-               "userid" => "someuser"
+               "userid" => "someuser",
+               "vhost" => "www.example.com"
              }
   end
 

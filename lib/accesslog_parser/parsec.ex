@@ -20,6 +20,7 @@ defmodule AccessLogParser.Parsec do
   status = repeat(integer(min: 1))
   timezone = repeat(ascii_string([?0..?9, ?+, ?-], 5))
   userid = repeat(ascii_string([not: 32], min: 1))
+  vhost = repeat(ascii_string([not: 32], min: 1))
 
   common =
     ip
@@ -45,5 +46,11 @@ defmodule AccessLogParser.Parsec do
     |> ignore(ascii_char([32]))
     |> concat(length)
 
+  common_vhost =
+    vhost
+    |> ignore(ascii_char([32]))
+    |> concat(common)
+
   defparsec :common, common, inline: true
+  defparsec :common_vhost, common_vhost, inline: true
 end
