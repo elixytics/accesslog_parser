@@ -21,6 +21,16 @@ defmodule AccessLogParser.Parsec do
     ])
 
   path = repeat(ascii_string([not: 32], min: 1))
+
+  protocol =
+    choice([
+      string("HTTP/0.9"),
+      string("HTTP/1.0"),
+      string("HTTP/1.1"),
+      string("HTTP/2"),
+      string("HTTP/3")
+    ])
+
   status = repeat(integer(min: 1))
   timezone = repeat(ascii_string([?0..?9, ?+, ?-], 5))
   userid = repeat(ascii_string([not: 32], min: 1))
@@ -40,7 +50,8 @@ defmodule AccessLogParser.Parsec do
     |> concat(method)
     |> ignore(string(" "))
     |> concat(path)
-    |> ignore(repeat(ascii_string([not: ?"], min: 1)))
+    |> ignore(string(" "))
+    |> ignore(protocol)
     |> ignore(string(~s(" )))
     |> concat(status)
     |> ignore(string(" "))
