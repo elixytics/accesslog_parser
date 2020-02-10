@@ -59,13 +59,14 @@ defmodule AccessLogParser do
   @spec parse(String.t(), log_format) :: map
   def parse(line, :common) do
     case Parsec.common(line) do
-      {:ok, [ip, userid, date, timezone, method, path, status, length], _, _, _, _} ->
+      {:ok, [ip, userid, date, timezone, method, path, protocol, status, length], _, _, _, _} ->
         %{
           "date" => date,
           "ip" => ip,
           "length" => length,
           "method" => method,
           "path" => path,
+          "protocol" => protocol,
           "status" => status,
           "timezone" => timezone,
           "userid" => userid
@@ -78,13 +79,15 @@ defmodule AccessLogParser do
 
   def parse(line, :common_vhost) do
     case Parsec.common_vhost(line) do
-      {:ok, [vhost, ip, userid, date, timezone, method, path, status, length], _, _, _, _} ->
+      {:ok, [vhost, ip, userid, date, timezone, method, path, protocol, status, length], _, _, _,
+       _} ->
         %{
           "date" => date,
           "ip" => ip,
           "length" => length,
           "method" => method,
           "path" => path,
+          "protocol" => protocol,
           "status" => status,
           "timezone" => timezone,
           "userid" => userid,

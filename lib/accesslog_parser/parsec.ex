@@ -51,7 +51,7 @@ defmodule AccessLogParser.Parsec do
     |> ignore(string(" "))
     |> concat(path)
     |> ignore(string(" "))
-    |> ignore(protocol)
+    |> concat(protocol)
     |> ignore(string(~s(" )))
     |> concat(status)
     |> ignore(string(" "))

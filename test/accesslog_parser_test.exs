@@ -13,6 +13,7 @@ defmodule AccessLogParserTest do
                "length" => 765,
                "method" => "GET",
                "path" => "/",
+               "protocol" => "HTTP/1.0",
                "status" => 200,
                "timezone" => "+0200",
                "userid" => "someuser"
@@ -50,6 +51,7 @@ defmodule AccessLogParserTest do
                "length" => 765,
                "method" => "GET",
                "path" => "/",
+               "protocol" => "HTTP/1.0",
                "status" => 200,
                "timezone" => "+0200",
                "userid" => "someuser",
