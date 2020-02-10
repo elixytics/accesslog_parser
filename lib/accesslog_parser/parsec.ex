@@ -31,7 +31,7 @@ defmodule AccessLogParser.Parsec do
       string("HTTP/3")
     ])
 
-  status = repeat(integer(min: 1))
+  status = repeat(integer(3))
   timezone = repeat(ascii_string([?0..?9, ?+, ?-], 5))
   userid = repeat(ascii_string([not: 32], min: 1))
   vhost = repeat(ascii_string([not: 32], min: 1))
