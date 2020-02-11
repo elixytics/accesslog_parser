@@ -3,6 +3,8 @@ defmodule AccessLogParser.Parsec do
 
   import NimbleParsec
 
+  dash_or_string = choice([string("-"), repeat(ascii_string([not: 32], min: 1))])
+
   date = repeat(ascii_string([?a..?z, ?A..?Z, ?0..?9, ?:, ?/], 20))
   ip = repeat(ascii_string([?a..?f, ?A..?F, ?0..?9, ?:, ?.], min: 7))
   length = repeat(integer(min: 1))
@@ -33,13 +35,13 @@ defmodule AccessLogParser.Parsec do
 
   status = repeat(integer(3))
   timezone = repeat(ascii_string([?0..?9, ?+, ?-], 5))
-  userid = repeat(ascii_string([not: 32], min: 1))
+  userid = dash_or_string
   vhost = repeat(ascii_string([not: 32], min: 1))
 
   common =
     ip
     |> ignore(string(" "))
-    |> ignore(repeat(ascii_string([not: 32], min: 1)))
+    |> ignore(dash_or_string)
     |> ignore(string(" "))
     |> concat(userid)
     |> ignore(string(" ["))
