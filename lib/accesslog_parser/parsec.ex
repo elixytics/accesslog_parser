@@ -33,8 +33,10 @@ defmodule AccessLogParser.Parsec do
       string("HTTP/3")
     ])
 
+  referrer = repeat(ascii_string([not: ?"], min: 1))
   status = repeat(integer(3))
   timezone = repeat(ascii_string([?0..?9, ?+, ?-], 5))
+  user_agent = repeat(ascii_string([not: ?"], min: 1))
   userid = dash_or_string
   vhost = repeat(ascii_string([not: 32], min: 1))
 
@@ -59,11 +61,21 @@ defmodule AccessLogParser.Parsec do
     |> ignore(string(" "))
     |> concat(length)
 
+  common_complete =
+    vhost
+    |> ignore(string(" "))
+    |> concat(common)
+    |> ignore(string(~s( ")))
+    |> concat(referrer)
+    |> ignore(string(~s(" ")))
+    |> concat(user_agent)
+
   common_vhost =
     vhost
     |> ignore(string(" "))
     |> concat(common)
 
   defparsec :common, common, inline: true
+  defparsec :common_complete, common_complete, inline: true
   defparsec :common_vhost, common_vhost, inline: true
 end
