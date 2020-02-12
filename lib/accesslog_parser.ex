@@ -44,11 +44,6 @@ defmodule AccessLogParser do
 
   alias AccessLogParser.Parsec
 
-  @tpl_client ~S/\s+"(?P<referrer>.*?)"\s+"(?P<user_agent>.*?)"/
-  @tpl_common ~S/(?P<ip>\S+)\s+\S+\s+(?P<userid>\S+)\s+\[(?P<date>.*?)\s+(?P<timezone>.*?)\]\s+"\S+\s+(?P<path>.*?)\s+\S+"\s+(?P<status>\S+)\s+(?P<length>\S+)/
-
-  @re_extended Regex.compile!(@tpl_common <> @tpl_client)
-
   @type log_format :: :common | :common_complete | :common_vhost | :extended
 
   @doc """
@@ -134,5 +129,38 @@ defmodule AccessLogParser do
     end
   end
 
-  def parse(line, :extended), do: Regex.named_captures(@re_extended, line)
+  def parse(line, :extended) do
+    case Parsec.extended(line) do
+      {:ok,
+       [
+         ip,
+         userid,
+         date,
+         timezone,
+         method,
+         path,
+         protocol,
+         status,
+         length,
+         referrer,
+         user_agent
+       ], _, _, _, _} ->
+        %{
+          "date" => date,
+          "ip" => ip,
+          "length" => length,
+          "method" => method,
+          "path" => path,
+          "protocol" => protocol,
+          "referrer" => referrer,
+          "status" => status,
+          "timezone" => timezone,
+          "user_agent" => user_agent,
+          "userid" => userid
+        }
+
+      _ ->
+        nil
+    end
+  end
 end

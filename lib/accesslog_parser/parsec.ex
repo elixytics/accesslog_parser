@@ -75,7 +75,15 @@ defmodule AccessLogParser.Parsec do
     |> ignore(string(" "))
     |> concat(common)
 
+  extended =
+    common
+    |> ignore(string(~s( ")))
+    |> concat(referrer)
+    |> ignore(string(~s(" ")))
+    |> concat(user_agent)
+
   defparsec :common, common, inline: true
   defparsec :common_complete, common_complete, inline: true
   defparsec :common_vhost, common_vhost, inline: true
+  defparsec :extended, extended, inline: true
 end
