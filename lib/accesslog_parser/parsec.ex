@@ -3,11 +3,11 @@ defmodule AccessLogParser.Parsec do
 
   import NimbleParsec
 
-  dash_or_string = choice([string("-"), repeat(ascii_string([not: 32], min: 1))])
+  dash_or_string = choice([string("-"), ascii_string([not: 32], min: 1)])
 
-  date = repeat(ascii_string([?a..?z, ?A..?Z, ?0..?9, ?:, ?/], 20))
-  ip = repeat(ascii_string([?a..?f, ?A..?F, ?0..?9, ?:, ?.], min: 7))
-  length = repeat(integer(min: 1))
+  date = ascii_string([?a..?z, ?A..?Z, ?0..?9, ?:, ?/], 20)
+  ip = ascii_string([?a..?f, ?A..?F, ?0..?9, ?:, ?.], min: 7)
+  length = integer(min: 1)
 
   method =
     choice([
@@ -22,7 +22,7 @@ defmodule AccessLogParser.Parsec do
       string("TRACE")
     ])
 
-  path = repeat(ascii_string([not: 32], min: 1))
+  path = ascii_string([not: 32], min: 1)
 
   protocol =
     choice([
@@ -33,12 +33,12 @@ defmodule AccessLogParser.Parsec do
       string("HTTP/3")
     ])
 
-  referrer = repeat(ascii_string([not: ?"], min: 1))
-  status = repeat(integer(3))
-  timezone = repeat(ascii_string([?0..?9, ?+, ?-], 5))
-  user_agent = repeat(ascii_string([not: ?"], min: 1))
+  referrer = ascii_string([not: ?"], min: 1)
+  status = integer(3)
+  timezone = ascii_string([?0..?9, ?+, ?-], 5)
+  user_agent = ascii_string([not: ?"], min: 1)
   userid = dash_or_string
-  vhost = repeat(ascii_string([not: 32], min: 1))
+  vhost = ascii_string([not: 32], min: 1)
 
   common =
     ip
