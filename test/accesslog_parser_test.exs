@@ -8,15 +8,15 @@ defmodule AccessLogParserTest do
              :common
            ) ==
              %{
-               "date" => "22/Apr/2017:15:17:39",
-               "ip" => "1.2.3.4",
-               "length" => 765,
-               "method" => "GET",
-               "path" => "/",
-               "protocol" => "HTTP/1.0",
-               "status" => 200,
-               "timezone" => "+0200",
-               "userid" => "someuser"
+               date: "22/Apr/2017:15:17:39",
+               ip: "1.2.3.4",
+               length: 765,
+               method: "GET",
+               path: "/",
+               protocol: "HTTP/1.0",
+               status: 200,
+               timezone: "+0200",
+               userid: "someuser"
              }
   end
 
@@ -26,19 +26,19 @@ defmodule AccessLogParserTest do
              :common_complete
            ) ==
              %{
-               "date" => "22/Apr/2017:15:17:39",
-               "ip" => "1.2.3.4",
-               "length" => 765,
-               "method" => "GET",
-               "path" => "/",
-               "protocol" => "HTTP/1.0",
-               "referrer" => "-",
-               "status" => 200,
-               "timezone" => "+0200",
-               "user_agent" =>
+               date: "22/Apr/2017:15:17:39",
+               ip: "1.2.3.4",
+               length: 765,
+               method: "GET",
+               path: "/",
+               protocol: "HTTP/1.0",
+               referrer: "-",
+               status: 200,
+               timezone: "+0200",
+               user_agent:
                  "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11",
-               "userid" => "someuser",
-               "vhost" => "www.example.com"
+               userid: "someuser",
+               vhost: "www.example.com"
              }
   end
 
@@ -48,16 +48,16 @@ defmodule AccessLogParserTest do
              :common_vhost
            ) ==
              %{
-               "date" => "22/Apr/2017:15:17:39",
-               "ip" => "1.2.3.4",
-               "length" => 765,
-               "method" => "GET",
-               "path" => "/",
-               "protocol" => "HTTP/1.0",
-               "status" => 200,
-               "timezone" => "+0200",
-               "userid" => "someuser",
-               "vhost" => "www.example.com"
+               date: "22/Apr/2017:15:17:39",
+               ip: "1.2.3.4",
+               length: 765,
+               method: "GET",
+               path: "/",
+               protocol: "HTTP/1.0",
+               status: 200,
+               timezone: "+0200",
+               userid: "someuser",
+               vhost: "www.example.com"
              }
   end
 
@@ -67,18 +67,18 @@ defmodule AccessLogParserTest do
              :extended
            ) ==
              %{
-               "date" => "22/Apr/2017:15:17:39",
-               "ip" => "1.2.3.4",
-               "length" => 765,
-               "method" => "GET",
-               "path" => "/",
-               "protocol" => "HTTP/1.0",
-               "referrer" => "-",
-               "status" => 200,
-               "timezone" => "+0200",
-               "user_agent" =>
+               date: "22/Apr/2017:15:17:39",
+               ip: "1.2.3.4",
+               length: 765,
+               method: "GET",
+               path: "/",
+               protocol: "HTTP/1.0",
+               referrer: "-",
+               status: 200,
+               timezone: "+0200",
+               user_agent:
                  "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.56 Safari/535.11",
-               "userid" => "someuser"
+               userid: "someuser"
              }
   end
 end

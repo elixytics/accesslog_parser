@@ -9,15 +9,15 @@ defmodule AccessLogParser do
 
       iex> AccessLogParser.parse("1.2.3.4 - - [22/Apr/2017:15:17:39 +0200] "GET / HTTP/1.0" 200 765", :common)
       %{
-        "date" => "22/Apr/2017:15:17:39",
-        "ip" => "1.2.3.4",
-        "length" => 765,
-        "method" => "GET",
-        "path" => "/",
-        "protocol" => "HTTP/1.0",
-        "status" => 200,
-        "timezone" => "+0200",
-        "userid" => "-"
+        date: "22/Apr/2017:15:17:39",
+        ip: "1.2.3.4",
+        length: 765,
+        method: "GET",
+        path: "/",
+        protocol: "HTTP/1.0",
+        status: 200,
+        timezone: "+0200",
+        userid: "-"
       }
 
   ## Formats
@@ -55,15 +55,15 @@ defmodule AccessLogParser do
     case Parsec.common(line) do
       {:ok, [ip, userid, date, timezone, method, path, protocol, status, length], _, _, _, _} ->
         %{
-          "date" => date,
-          "ip" => ip,
-          "length" => length,
-          "method" => method,
-          "path" => path,
-          "protocol" => protocol,
-          "status" => status,
-          "timezone" => timezone,
-          "userid" => userid
+          date: date,
+          ip: ip,
+          length: length,
+          method: method,
+          path: path,
+          protocol: protocol,
+          status: status,
+          timezone: timezone,
+          userid: userid
         }
 
       _ ->
@@ -89,18 +89,18 @@ defmodule AccessLogParser do
          user_agent
        ], _, _, _, _} ->
         %{
-          "date" => date,
-          "ip" => ip,
-          "length" => length,
-          "method" => method,
-          "path" => path,
-          "protocol" => protocol,
-          "referrer" => referrer,
-          "status" => status,
-          "timezone" => timezone,
-          "user_agent" => user_agent,
-          "userid" => userid,
-          "vhost" => vhost
+          date: date,
+          ip: ip,
+          length: length,
+          method: method,
+          path: path,
+          protocol: protocol,
+          referrer: referrer,
+          status: status,
+          timezone: timezone,
+          user_agent: user_agent,
+          userid: userid,
+          vhost: vhost
         }
 
       _ ->
@@ -113,16 +113,16 @@ defmodule AccessLogParser do
       {:ok, [vhost, ip, userid, date, timezone, method, path, protocol, status, length], _, _, _,
        _} ->
         %{
-          "date" => date,
-          "ip" => ip,
-          "length" => length,
-          "method" => method,
-          "path" => path,
-          "protocol" => protocol,
-          "status" => status,
-          "timezone" => timezone,
-          "userid" => userid,
-          "vhost" => vhost
+          date: date,
+          ip: ip,
+          length: length,
+          method: method,
+          path: path,
+          protocol: protocol,
+          status: status,
+          timezone: timezone,
+          userid: userid,
+          vhost: vhost
         }
 
       _ ->
@@ -147,17 +147,17 @@ defmodule AccessLogParser do
          user_agent
        ], _, _, _, _} ->
         %{
-          "date" => date,
-          "ip" => ip,
-          "length" => length,
-          "method" => method,
-          "path" => path,
-          "protocol" => protocol,
-          "referrer" => referrer,
-          "status" => status,
-          "timezone" => timezone,
-          "user_agent" => user_agent,
-          "userid" => userid
+          date: date,
+          ip: ip,
+          length: length,
+          method: method,
+          path: path,
+          protocol: protocol,
+          referrer: referrer,
+          status: status,
+          timezone: timezone,
+          user_agent: user_agent,
+          userid: userid
         }
 
       _ ->
