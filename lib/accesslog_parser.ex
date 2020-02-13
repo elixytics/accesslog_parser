@@ -11,10 +11,11 @@ defmodule AccessLogParser do
       %{
         "date" => "22/Apr/2017:15:17:39",
         "ip" => "1.2.3.4",
-        "length" => "765",
+        "length" => 765,
         "method" => "GET",
         "path" => "/",
-        "status" => "200",
+        "protocol" => "HTTP/1.0",
+        "status" => 200,
         "timezone" => "+0200",
         "userid" => "-"
       }
