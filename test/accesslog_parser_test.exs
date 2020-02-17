@@ -76,4 +76,22 @@ defmodule AccessLogParserTest do
                }
     end
   end
+
+  describe "with an invalid log entry" do
+    test ":common" do
+      refute AccessLogParser.parse("i-am-not-valid", :common)
+    end
+
+    test ":common_complete" do
+      refute AccessLogParser.parse("i-am-not-valid", :common_complete)
+    end
+
+    test ":common_vhost" do
+      refute AccessLogParser.parse("i-am-not-valid", :common_vhost)
+    end
+
+    test ":extended" do
+      refute AccessLogParser.parse("i-am-not-valid", :extended)
+    end
+  end
 end
