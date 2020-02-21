@@ -7,7 +7,7 @@ defmodule AccessLogParser do
 
   You simply call the parse method with your log line and the format it adheres to:
 
-      iex> AccessLogParser.parse("1.2.3.4 - - [22/Apr/2017:15:17:39 +0200] "GET / HTTP/1.0" 200 765", :common)
+      iex> AccessLogParser.parse(~s(1.2.3.4 - - [22/Apr/2017:15:17:39 +0200] "GET / HTTP/1.0" 200 765), :common)
       %{
         date: "22/Apr/2017:15:17:39",
         ip: "1.2.3.4",
