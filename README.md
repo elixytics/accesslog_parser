@@ -8,7 +8,7 @@ Add the library as a dependency to your `mix.exs` file:
 defp deps do
   [
     # ...
-    {:accesslog_parser, "~> 0.1"},
+    {:accesslog_parser, "~> 0.2.0"},
     # ...
   ]
 end
