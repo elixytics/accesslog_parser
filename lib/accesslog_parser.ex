@@ -39,18 +39,20 @@ defmodule AccessLogParser do
 
   ### NCSA extended/combined log format
 
-  - `:extended`
+  - `:combined` or `:extended`
   - Apache configuration: `%h %l %u %t \\"%r\\" %>s %b \\"%{Referer}i\\" \\"%{User-agent}i\\"`
   """
 
   alias AccessLogParser.Parsec
 
-  @type log_format :: :common | :common_complete | :common_vhost | :extended
+  @type log_format :: :combined | :common | :common_complete | :common_vhost | :extended
 
   @doc """
   Converts a given line into a map matching the defined format.
   """
   @spec parse(String.t(), log_format) :: map
+  def parse(line, :combined), do: parse(line, :extended)
+
   def parse(line, :common) do
     case Parsec.common(line) do
       {:ok, [ip, userid, date, timezone, method, path, protocol, status, length], _, _, _, _} ->

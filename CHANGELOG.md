@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.3.0-dev
+
+- Enhancements
+    - NCSA extended/combined log format can be parsed using either `:combined` or `:extended` format specifiers
+
 ## v0.2.0 (2020-02-21)
 
 - Enhancements

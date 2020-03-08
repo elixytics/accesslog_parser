@@ -59,21 +59,23 @@ defmodule AccessLogParserTest do
                }
     end
 
-    test ":extended" do
-      assert AccessLogParser.parse(@log_extended, :extended) ==
-               %{
-                 date: "22/Apr/2017:15:17:39",
-                 ip: "1.2.3.4",
-                 length: 765,
-                 method: "GET",
-                 path: "/",
-                 protocol: "HTTP/1.0",
-                 referrer: "-",
-                 status: 200,
-                 timezone: "+0200",
-                 user_agent: @result_user_agent,
-                 userid: "someuser"
-               }
+    test ":combined or :extended" do
+      expected = %{
+        date: "22/Apr/2017:15:17:39",
+        ip: "1.2.3.4",
+        length: 765,
+        method: "GET",
+        path: "/",
+        protocol: "HTTP/1.0",
+        referrer: "-",
+        status: 200,
+        timezone: "+0200",
+        user_agent: @result_user_agent,
+        userid: "someuser"
+      }
+
+      assert AccessLogParser.parse(@log_extended, :combined) == expected
+      assert AccessLogParser.parse(@log_extended, :extended) == expected
     end
   end
 
