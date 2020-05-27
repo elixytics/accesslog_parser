@@ -16,9 +16,16 @@ end
 
 ## Usage
 
-Grab a line from your accesslog and parse it using `AccessLogParser.parse/2`.
+Grab a line from your accesslog and parse it using `AccessLogParser.parse/2`:
 
-See the module itself for details on supported formats and how to parse them.
+```elixir
+logline = ~s(1.2.3.4 - - [22/Apr/2017:15:17:39 +0200] "GET / HTTP/1.0" 200 765)
+logformat = :common
+
+AccessLogParser.parse(logline, logformat)
+```
+
+More details are available in the `AccessLogParser` module documentation.
 
 ## Benchmark
 
