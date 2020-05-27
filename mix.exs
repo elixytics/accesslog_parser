@@ -36,8 +36,8 @@ defmodule AccessLogParser.MixProject do
       {:credo, "~> 1.0", only: :dev, runtime: false},
       {:dialyxir, "~> 1.0", only: :dev, runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
-      {:excoveralls, "~> 0.12", only: :test, runtime: false},
-      {:nimble_parsec, "~> 0.5"}
+      {:excoveralls, "~> 0.12.0", only: :test, runtime: false},
+      {:nimble_parsec, "~> 0.5.0"}
     ]
   end
 
