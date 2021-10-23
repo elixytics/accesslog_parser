@@ -7,7 +7,7 @@ defmodule AccessLogParser.MixProject do
     [
       app: :accesslog_parser,
       version: "0.3.0-dev",
-      elixir: "~> 1.7",
+      elixir: "~> 1.9",
       aliases: aliases(),
       deps: deps(),
       description: "Access Log Parser",

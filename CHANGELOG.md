@@ -5,6 +5,9 @@
 - Enhancements
     - NCSA extended/combined log format can be parsed using either `:combined` or `:extended` format specifiers
 
+- Backwards incompatible changes
+    - Minimum required Elixir version is now `~> 1.9`
+
 ## v0.2.0 (2020-02-21)
 
 - Enhancements
