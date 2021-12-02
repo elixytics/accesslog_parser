@@ -64,7 +64,7 @@ defmodule AccessLogParser.MixProject do
   defp package do
     %{
       files: ["CHANGELOG.md", "LICENSE", "mix.exs", "README.md", "lib"],
-      licenses: ["Apache 2.0"],
+      licenses: ["Apache-2.0"],
       links: %{"GitHub" => @url_github}
     }
   end
