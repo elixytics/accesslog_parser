@@ -62,6 +62,7 @@ defmodule AccessLogParser.MixProject do
         LICENSE: [title: "License"],
         "README.md": [title: "Overview"]
       ],
+      formatters: ["html"],
       main: "AccessLogParser",
       source_ref: "v#{@version}",
       source_url: @url_github
