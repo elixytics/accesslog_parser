@@ -2,11 +2,12 @@ defmodule AccessLogParser.MixProject do
   use Mix.Project
 
   @url_github "https://github.com/elixytics/accesslog_parser"
+  @version "0.3.0-dev"
 
   def project do
     [
       app: :accesslog_parser,
-      version: "0.3.0-dev",
+      version: @version,
       elixir: "~> 1.9",
       aliases: aliases(),
       deps: deps(),
@@ -56,7 +57,7 @@ defmodule AccessLogParser.MixProject do
   defp docs do
     [
       main: "AccessLogParser",
-      source_ref: "master",
+      source_ref: "v#{@version}",
       source_url: @url_github
     ]
   end
