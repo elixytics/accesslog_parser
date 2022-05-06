@@ -56,6 +56,11 @@ defmodule AccessLogParser.MixProject do
 
   defp docs do
     [
+      extras: [
+        "CHANGELOG.md",
+        LICENSE: [title: "License"],
+        "README.md": [title: "Overview"]
+      ],
       main: "AccessLogParser",
       source_ref: "v#{@version}",
       source_url: @url_github
