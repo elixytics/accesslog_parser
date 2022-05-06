@@ -1,6 +1,7 @@
 defmodule AccessLogParser.MixProject do
   use Mix.Project
 
+  @url_changelog "https://hexdocs.pm/accesslog_parser/changelog.html"
   @url_github "https://github.com/elixytics/accesslog_parser"
   @version "0.3.0-dev"
 
@@ -71,7 +72,10 @@ defmodule AccessLogParser.MixProject do
     %{
       files: ["CHANGELOG.md", "LICENSE", "mix.exs", "README.md", "lib"],
       licenses: ["Apache-2.0"],
-      links: %{"GitHub" => @url_github}
+      links: %{
+        "Changelog" => @url_changelog,
+        "GitHub" => @url_github
+      }
     }
   end
 end
