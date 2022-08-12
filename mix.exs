@@ -33,9 +33,9 @@ defmodule AccessLogParser.MixProject do
 
   defp deps do
     [
-      {:benchee, "~> 1.0", only: :bench, runtime: false},
-      {:credo, "~> 1.0", only: :dev, runtime: false},
-      {:dialyxir, "~> 1.0", only: :dev, runtime: false},
+      {:benchee, "~> 1.1", only: :bench, runtime: false},
+      {:credo, "~> 1.6", only: :dev, runtime: false},
+      {:dialyxir, "~> 1.2", only: :dev, runtime: false},
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:excoveralls, "~> 0.14.0", only: :test, runtime: false},
       {:nimble_parsec, "~> 1.0"}
