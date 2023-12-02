@@ -15,6 +15,7 @@ defmodule AccessLogParser.MixProject do
       description: "Access Log Parser",
       dialyzer: dialyzer(),
       docs: docs(),
+      elixirc_paths: elixirc_paths(Mix.env()),
       package: package(),
       preferred_cli_env: [
         "bench.parse": :bench,
@@ -67,6 +68,9 @@ defmodule AccessLogParser.MixProject do
       source_url: @url_github
     ]
   end
+
+  defp elixirc_paths(:test), do: ["lib", "test/helpers"]
+  defp elixirc_paths(_), do: ["lib"]
 
   defp package do
     %{
